@@ -13,22 +13,23 @@ start_time = datetime.datetime.now().isoformat()
 
 @app.route("/")
 def root():
-    # run du -sh {volume} to get the size of the volume
-
-    current_size = (
-        subprocess.check_output(["du", "-sh", volume]).split()[0].decode("utf-8")
-    )
-
     return (
         "sprayfoam is filling "
         + volume
         + " with "
         + size
-        + "MB files.\nRunning since "
+        + "MB files.<br/>Running since "
         + start_time
-        + "\n Volume size: "
-        + current_size
+        + ". <a href='/size'>Check size</a>"
     )
+
+
+@app.route("/size")
+def size():
+    current_size = (
+        subprocess.check_output(["du", "-sh", volume]).split()[0].decode("utf-8")
+    )
+    return "Volume size: " + current_size
 
 
 @app.route("/healthz")
