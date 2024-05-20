@@ -8,14 +8,16 @@ import subprocess
 volume = os.environ.get("VOLUME", "/data")
 size = os.environ.get("SIZE", 10)
 app = Flask(__name__)
-startTime = datetime.datetime.now().isoformat()
+start_time = datetime.datetime.now().isoformat()
 
 
 @app.route("/")
 def root():
     # run du -sh {volume} to get the size of the volume
 
-    size = subprocess.check_output(["du", "-sh", volume]).split()[0].decode("utf-8")
+    current_size = (
+        subprocess.check_output(["du", "-sh", volume]).split()[0].decode("utf-8")
+    )
 
     return (
         "sprayfoam is filling "
@@ -23,9 +25,9 @@ def root():
         + " with "
         + size
         + "MB files.\nRunning since "
-        + startTime
+        + start_time
         + "\n Volume size: "
-        + size
+        + current_size
     )
 
 
