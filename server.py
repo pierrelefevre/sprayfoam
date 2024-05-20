@@ -21,7 +21,7 @@ def healthz():
 def generate_big_files(volume, size):
     while True:
         with open(f"{volume}/{uuid.uuid4()}.txt", "w") as f:
-            f.write("0" * 1024 * 1024 * size)
+            f.write("0" * 1024 * 1024 * int(size))
 
 
 if __name__ == "__main__":
