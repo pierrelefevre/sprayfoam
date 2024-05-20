@@ -2,15 +2,24 @@ from flask import Flask
 import os
 import threading
 import uuid
+import datetime
 
 volume = os.environ.get("VOLUME", "/data")
 size = os.environ.get("SIZE", 10)
 app = Flask(__name__)
+startTime = datetime.datetime.now().isoformat()
 
 
 @app.route("/")
 def root():
-    return "sprayfoam is filling " + volume + " with " + size + "MB files"
+    return (
+        "sprayfoam is filling "
+        + volume
+        + " with "
+        + size
+        + "MB files. Running since "
+        + startTime
+    )
 
 
 @app.route("/healthz")
