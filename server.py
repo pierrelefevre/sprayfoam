@@ -25,7 +25,7 @@ def root():
 
 
 @app.route("/size")
-def size():
+def get_size():
     current_size = (
         subprocess.check_output(["du", "-sh", volume]).split()[0].decode("utf-8")
     )
