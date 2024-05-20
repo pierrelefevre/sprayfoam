@@ -20,7 +20,7 @@ def root():
         + size
         + "MB files.<br/>Running since "
         + start_time
-        + ". <a href='/size'>Check size</a>"
+        + ".<br/><a href='/size'>Check size</a>"
     )
 
 
